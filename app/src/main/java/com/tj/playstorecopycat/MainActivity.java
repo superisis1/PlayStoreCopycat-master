@@ -43,11 +43,21 @@ public class MainActivity extends AppCompatActivity {
         });
 */
 
-//        아이템이 눌렸을 때의 이벤트
+//        아이템 클릭 이벤트
         act.appRankListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { // 이벤트의 position은 몇번째 줄이 눌렸는지 알려줌. onItem에는 position이 따라옴
                 Toast.makeText(MainActivity.this, String.format("%d번째 줄이 클릭됨",position), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        아이템 롱클릭 이벤트
+        act.appRankListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(MainActivity.this, String.format("%d번째 줄이 오래 클릭됨",position), Toast.LENGTH_SHORT).show();
+                return true; // false 일 때는 눌렀다 떼면 실행 후 짧게 눌러지는 애가 뒷따라 실행되는데, return true; 하면 다른 이벤트 무시하고 롱클릭 이벤트만 발생함. -> 보통 true 많이 씀.
             }
         });
 
