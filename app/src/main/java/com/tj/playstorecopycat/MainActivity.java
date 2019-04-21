@@ -1,5 +1,6 @@
 package com.tj.playstorecopycat;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +48,14 @@ public class MainActivity extends AppCompatActivity {
         act.appRankListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { // 이벤트의 position은 몇번째 줄이 눌렸는지 알려줌. onItem에는 position이 따라옴
-                Toast.makeText(MainActivity.this, String.format("%d번째 줄이 클릭됨",position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, String.format("%d번째 줄이 클릭됨",position), Toast.LENGTH_SHORT).show();
+
+                App clickedAppData = appList.get(position);
+
+                Intent intent = new Intent(MainActivity.this, AppDetailActivity.class);
+                intent.putExtra("제목", clickedAppData.title);
+                intent.putExtra("회사이름", clickedAppData.companyName);
+                startActivity(intent);
             }
         });
 
